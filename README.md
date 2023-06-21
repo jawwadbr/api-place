@@ -2,9 +2,17 @@
   API Place Manager Challenge
 </h1>
 
-API to manage places (CRUD) from this [Challenge](https://github.com/RocketBus/quero-ser-clickbus/tree/master/testes/backend-developer) for back-end developers. It's a simple challenge to test my skills on building APIs.
+API to manage places (CRUD) from this [challenge](https://github.com/RocketBus/quero-ser-clickbus/tree/master/testes/backend-developer) for back-end developers. It's a simple challenge to test my skills on building APIs.
+
+## Topics
+- [Technologies](https://github.com/jawwadbr/api-place#technologies)
+- [How to run](https://github.com/jawwadbr/api-place#how-to-run)
+  * [Locally](https://github.com/jawwadbr/api-place#locally)
+- [API Endpoints](https://github.com/jawwadbr/api-place#api-endpoints)
+
 ## Technologies
 
+- [Java 17](https://docs.oracle.com/en/java/javase/17/)
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring Data JPA](https://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/#repositories)
 - [Slugify](https://github.com/slugify/slugify)

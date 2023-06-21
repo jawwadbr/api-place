@@ -40,8 +40,7 @@ public class Place {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp // https://stackoverflow.com/questions/5257709/how-to-autogenerate-created-or-modified-timestamp-field
-    //@LastModifiedDate
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 

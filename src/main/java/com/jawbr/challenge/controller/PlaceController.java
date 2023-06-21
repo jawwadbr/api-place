@@ -28,19 +28,6 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    /*
-        TEST JSON - DELETE THIS LATER
-    {
-        "id": 1,
-        "name": "place",
-        "slug": "place",
-        "city": "place",
-        "state": "place",
-        "createdAt": "2023-06-07T14:45:39.693689",
-        "updatedAt": "2023-06-07T14:45:39.693689"
-    }
-    */
-
     // GET
     @GetMapping
     public List<PlaceDTO> getAll() {
