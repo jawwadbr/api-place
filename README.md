@@ -28,7 +28,7 @@ API to manage places (CRUD) from this [challenge](https://github.com/RocketBus/q
 ```
 - Execute project:
 ```
-java -jar target/challenge-0.0.1-SNAPSHOT.jar
+java -jar target/api-places-challenge-0.0.1-SNAPSHOT.jar
 ```
 The API will be available at [localhost:8080](localhost:8080).
 
@@ -36,7 +36,7 @@ The API will be available at [localhost:8080](localhost:8080).
 
 To make the HTTP requests below, [Postman](https://www.postman.com) tool was used:
 
-- GET /api/places
+- GET /api/places?name=? <span style="color:red">(The parameter is optional)</span>.
 ```
 [
     {
