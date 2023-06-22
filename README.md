@@ -8,6 +8,7 @@ API to manage places (CRUD) from this [challenge](https://github.com/RocketBus/q
 - [Technologies](https://github.com/jawwadbr/api-place#technologies)
 - [How to run](https://github.com/jawwadbr/api-place#how-to-run)
   * [Locally](https://github.com/jawwadbr/api-place#locally)
+  * [Using Docker](https://github.com/jawwadbr/api-place#using-docker)
 - [API Endpoints](https://github.com/jawwadbr/api-place#api-endpoints)
 
 ## Technologies
@@ -29,6 +30,23 @@ API to manage places (CRUD) from this [challenge](https://github.com/RocketBus/q
 - Execute project:
 ```
 java -jar target/api-places-challenge-0.0.1-SNAPSHOT.jar
+```
+The API will be available at [localhost:8080](http://localhost:8080).
+
+### Using Docker
+
+- Clone the repository git
+- Build the project:
+```
+./mvnw clean package 
+```
+- Build the image
+```
+./mvnw spring-boot:build-image
+```
+- Execute the container
+```
+docker run --name api-places -p 8080:8080  -d api-places-challenge:0.0.1-SNAPSHOT
 ```
 The API will be available at [localhost:8080](http://localhost:8080).
 
