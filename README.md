@@ -80,11 +80,11 @@ Status 200 OK
 
 {
     "name": "New Tampa City",
-    "city": "New Florida",
-    "state": "new-tampa-city",
-    "slug": "New Tampa City",
-    "createdAt": "2023-06-21T19:46:38.076203",
-    "updatedAt": "2023-06-21T19:47:03.137749"
+    "city": "New Tampa City",
+    "state": "New Florida",
+    "slug": "new-tampa-city",
+    "createdAt": "2023-06-21T23:39:24.735345",
+    "updatedAt": "2023-06-21T23:39:28.298253"
 }
 ```
 - DELETE /api/places/{id}

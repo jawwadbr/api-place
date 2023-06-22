@@ -75,7 +75,7 @@ public class PlaceService {
         final String city = StringUtils.hasText(placeRequest.getCity()) ? placeRequest.getCity() : place.orElse(null).getCity();
         final String state = StringUtils.hasText(placeRequest.getState()) ? placeRequest.getState() : place.orElse(null).getState();
 
-        Place patchedPlace = new Place(place.orElse(null).getId(), name, city, state, slugify.slugify(placeRequest.getName()), place.get().getCreatedAt(), place.get().getUpdatedAt());
+        Place patchedPlace = new Place(place.orElse(null).getId(), name, slugify.slugify(placeRequest.getName()), city, state, place.get().getCreatedAt(), place.get().getUpdatedAt());
         placeRepository.save(patchedPlace);
         return placeRepository.findById(patchedPlace.getId()).map(placeDTOMapper);
     }
