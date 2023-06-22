@@ -30,7 +30,7 @@ API to manage places (CRUD) from this [challenge](https://github.com/RocketBus/q
 ```
 java -jar target/api-places-challenge-0.0.1-SNAPSHOT.jar
 ```
-The API will be available at [localhost:8080](localhost:8080).
+The API will be available at [localhost:8080](http://localhost:8080).
 
 ## API Endpoints
 
