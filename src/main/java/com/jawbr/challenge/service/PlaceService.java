@@ -6,6 +6,7 @@ import com.jawbr.challenge.dto.mapper.PlaceDTOMapper;
 import com.jawbr.challenge.entity.Place;
 import com.jawbr.challenge.exception.PlaceNotFoundException;
 import com.jawbr.challenge.repository.PlaceRepository;
+import com.jawbr.challenge.util.QueryBuilder;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
@@ -30,8 +31,11 @@ public class PlaceService {
     }
 
     // Get all
-    public List<PlaceDTO> getAll() {
-        return Optional.of(placeRepository.findAll(Sort.by("name").ascending()))
+    public List<PlaceDTO> getAll(String name) {
+        var place =  new Place();
+        place.setName(name);
+        Example<Place> query = QueryBuilder.createQuery(place);
+        return Optional.of(placeRepository.findAll(query, Sort.by("name").ascending()))
                 .filter(list -> !list.isEmpty())
                 .orElseThrow(() -> new PlaceNotFoundException("No places found inside the database.", System.currentTimeMillis()))
                 .stream()
@@ -67,11 +71,11 @@ public class PlaceService {
                         "Place with id of " + id + " not found.",
                         System.currentTimeMillis())));
 
-        final String name = StringUtils.hasText(placeRequest.getName()) ? placeRequest.getName() : place.get().getName();
-        final String city = StringUtils.hasText(placeRequest.getCity()) ? placeRequest.getCity() : place.get().getCity();
-        final String state = StringUtils.hasText(placeRequest.getState()) ? placeRequest.getState() : place.get().getState();
+        final String name = StringUtils.hasText(placeRequest.getName()) ? placeRequest.getName() : place.orElse(null).getName();
+        final String city = StringUtils.hasText(placeRequest.getCity()) ? placeRequest.getCity() : place.orElse(null).getCity();
+        final String state = StringUtils.hasText(placeRequest.getState()) ? placeRequest.getState() : place.orElse(null).getState();
 
-        Place patchedPlace = new Place(place.get().getId(), name, city, state, slugify.slugify(placeRequest.getName()), place.get().getCreatedAt(), place.get().getUpdatedAt());
+        Place patchedPlace = new Place(place.orElse(null).getId(), name, city, state, slugify.slugify(placeRequest.getName()), place.get().getCreatedAt(), place.get().getUpdatedAt());
         placeRepository.save(patchedPlace);
         return placeRepository.findById(patchedPlace.getId()).map(placeDTOMapper);
     }

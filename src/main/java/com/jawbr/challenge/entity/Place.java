@@ -19,7 +19,7 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @NotBlank
     @Column(name = "name")
@@ -47,7 +47,7 @@ public class Place {
     public Place() {
     }
 
-    public Place(int id, String name, String slug, String city, String state, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Place(Integer id, String name, String slug, String city, String state, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.slug = slug;
@@ -64,11 +64,11 @@ public class Place {
         this.state = state;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
