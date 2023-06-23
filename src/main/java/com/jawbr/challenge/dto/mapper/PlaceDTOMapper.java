@@ -3,7 +3,6 @@ package com.jawbr.challenge.dto.mapper;
 import com.jawbr.challenge.dto.PlaceDTO;
 import com.jawbr.challenge.entity.Place;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.function.Function;
 

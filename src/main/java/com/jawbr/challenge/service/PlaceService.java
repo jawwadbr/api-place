@@ -8,7 +8,6 @@ import com.jawbr.challenge.exception.PlaceNotFoundException;
 import com.jawbr.challenge.repository.PlaceRepository;
 import com.jawbr.challenge.util.QueryBuilder;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -32,7 +31,7 @@ public class PlaceService {
 
     // Get all
     public List<PlaceDTO> getAll(String name) {
-        var place =  new Place();
+        var place = new Place();
         place.setName(name);
         Example<Place> query = QueryBuilder.createQuery(place);
         return Optional.of(placeRepository.findAll(query, Sort.by("name").ascending()))
