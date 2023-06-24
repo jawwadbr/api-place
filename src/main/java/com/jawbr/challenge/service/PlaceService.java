@@ -21,12 +21,12 @@ public class PlaceService {
 
     private final PlaceRepository placeRepository;
     private final PlaceDTOMapper placeDTOMapper;
-    private Slugify slugify;
+    private final Slugify slugify;
 
     public PlaceService(PlaceRepository placeRepository, PlaceDTOMapper placeDTOMapper) {
         this.placeRepository = placeRepository;
         this.placeDTOMapper = placeDTOMapper;
-        this.slugify = slugify.builder().build();
+        this.slugify = Slugify.builder().build();
     }
 
     // Get all
@@ -36,7 +36,9 @@ public class PlaceService {
         Example<Place> query = QueryBuilder.createQuery(place);
         return Optional.of(placeRepository.findAll(query, Sort.by("name").ascending()))
                 .filter(list -> !list.isEmpty())
-                .orElseThrow(() -> new PlaceNotFoundException("No places found inside the database.", System.currentTimeMillis()))
+                .orElseThrow(() ->
+                        new PlaceNotFoundException("No places found inside the database.",
+                                System.currentTimeMillis()))
                 .stream()
                 .map(placeDTOMapper)
                 .collect(Collectors.toList());
@@ -74,7 +76,15 @@ public class PlaceService {
         final String city = StringUtils.hasText(placeRequest.getCity()) ? placeRequest.getCity() : place.orElse(null).getCity();
         final String state = StringUtils.hasText(placeRequest.getState()) ? placeRequest.getState() : place.orElse(null).getState();
 
-        Place patchedPlace = new Place(place.orElse(null).getId(), name, slugify.slugify(placeRequest.getName()), city, state, place.get().getCreatedAt(), place.get().getUpdatedAt());
+        Place patchedPlace = new Place(
+                place.orElse(null).getId(),
+                name,
+                slugify.slugify(placeRequest.getName()),
+                city,
+                state,
+                place.get().getCreatedAt(),
+                place.get().getUpdatedAt());
+
         placeRepository.save(patchedPlace);
         return placeRepository.findById(patchedPlace.getId()).map(placeDTOMapper);
     }
@@ -83,7 +93,9 @@ public class PlaceService {
     public void delete(int id) {
         placeRepository.findById(id).ifPresentOrElse(
                 placeRepository::delete, () -> {
-                    throw new PlaceNotFoundException("Place with id of " + id + " not found.", System.currentTimeMillis());
+                    throw new PlaceNotFoundException(
+                            "Place with id of " + id + " not found.",
+                            System.currentTimeMillis());
                 }
         );
 
